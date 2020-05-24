@@ -45,7 +45,7 @@ function App() {
         <input value={search} onChange={(event) => setSearch(event.target.value)}/>
         <ul>
           { results && results.map((result) => 
-            <li key={result.refIndex}>{result.item.description}</li>
+            <li key={result.refIndex}><b>{result.item.bin}</b> <i>{result.item.version}</i> {result.item.description}</li>
           ) }
         </ul>
       </main>
