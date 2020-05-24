@@ -7,23 +7,26 @@ function App() {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState({});
   const [manifests, setManifests] = useState([]);
-  const [fuse, setFuse] = useState(new Fuse(manifests, fuseOptions));
-  
+  const [fuse, setFuse] = useState(new Fuse(manifests, fuseOptions));  
 
   async function getManifests() {
     const response = await fetch("https://mertd.github.io/shovel-data/manifests.json");
     const json = await response.json();
     setManifests(json);
-    setFuse(new Fuse(manifests, fuseOptions));
   }
 
   useEffect(() => {
     getManifests();   
-    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
-    setResults(fuse.search(search));
+    setFuse(new Fuse(manifests, fuseOptions));
+  }, [manifests])
+
+  useEffect(() => {
+    const results = fuse.search(search);
+    setResults(results);
+    console.log(results);
     // eslint-disable-next-line
   }, [search])
 
