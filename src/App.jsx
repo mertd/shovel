@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Fuse from "fuse.js";
 
 const fuseOptions = {
+  threshold: 0.2,
   keys: [
     "homepage",
     "description",
@@ -32,7 +33,6 @@ function App() {
   useEffect(() => {
     const results = fuse.search(search);
     setResults(results);
-    console.log(results);
     // eslint-disable-next-line
   }, [search])
 
