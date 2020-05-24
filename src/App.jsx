@@ -4,9 +4,8 @@ import Fuse from "fuse.js";
 const fuseOptions = {
   threshold: 0.2,
   keys: [
-    "homepage",
-    "description",
-    "bin"
+    "name",
+    "description"
   ]
 }
 
@@ -40,12 +39,14 @@ function App() {
     <div className="App">
       <header>
         <h1>Shovel</h1>
+        <h4>Search apps installable via <a href="https://scoop.sh" target="_blank" rel="noopener noreferrer">scoop</a></h4>
+        <h5>Supported buckets: <a href="https://github.com/ScoopInstaller/Main" target="_blank" rel="noopener noreferrer">main</a>, <a href="https://github.com/lukesampson/scoop-extras" target="_blank" rel="noopener noreferrer">extras</a></h5>
       </header>
       <main>
         <input value={search} onChange={(event) => setSearch(event.target.value)}/>
         <ul>
           { results && results.map((result) => 
-            <li key={result.refIndex}><b>{result.item.bin}</b> <i>{result.item.version}</i> {result.item.description}</li>
+            <li key={result.refIndex}><p><b>{result.item.name}</b> <i>{result.item.version}</i></p><p>{result.item.description}</p><p><code>scoop install {result.item.name}</code></p></li>
           ) }
         </ul>
       </main>
