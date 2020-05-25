@@ -45,7 +45,12 @@ function App() {
         <input value={search} onChange={(event) => setSearch(event.target.value)}/>
         <ul>
           { results && results.map((result) => 
-            <li key={result.refIndex}><p><b>{result.item.name}</b> <i>{result.item.version}</i></p><p>{result.item.description}</p><p><code>scoop install {result.item.name}</code></p></li>
+            <li key={result.refIndex}>
+              <p><b>{result.item.name}</b> {result.item.version} <i>{result.item.bucket}</i></p>
+              <p>{result.item.description}</p>
+              <p><script>scoop add bucket {result.item.bucket}</script></p>
+              <p><code>scoop install {result.item.name}</code></p>
+            </li>
           ) }
         </ul>
       </main>
