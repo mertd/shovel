@@ -40,7 +40,6 @@ function App() {
       <header>
         <h1>Shovel</h1>
         <h4>Search apps installable via <a href="https://scoop.sh" target="_blank" rel="noopener noreferrer">scoop</a></h4>
-        <h5>Supported buckets: <a href="https://github.com/ScoopInstaller/Main" target="_blank" rel="noopener noreferrer">main</a>, <a href="https://github.com/lukesampson/scoop-extras" target="_blank" rel="noopener noreferrer">extras</a></h5>
       </header>
       <main>
         <input value={search} onChange={(event) => setSearch(event.target.value)}/>
