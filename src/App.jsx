@@ -53,6 +53,10 @@ function App() {
           ) }
         </ul>
       </main>
+      <footer>
+        Shovel is <a href="https://github.com/mertd/shovel" target="_blank" rel="noopener noreferrer">open source</a>. 
+        Your use of this app is governed by the <a href="https://github.com/mertd/shovel/blob/master/LICENCE" target="_blank" rel="noopener noreferrer">MIT Licence</a>.
+      </footer>
     </div>
   );
 }
