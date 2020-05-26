@@ -75,7 +75,7 @@ function App() {
         </ul>
       </main>
       <footer>
-        Shovel is{" "}
+        Shovel is
         <a
           href="https://github.com/mertd/shovel"
           target="_blank"
@@ -83,7 +83,7 @@ function App() {
         >
           open source
         </a>
-        . Your use of this app is governed by the{" "}
+        . Your use of this app is governed by the
         <a
           href="https://github.com/mertd/shovel/blob/master/LICENCE"
           target="_blank"
