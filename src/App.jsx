@@ -39,10 +39,7 @@ function App() {
       <header>
         <h1>Shovel</h1>
         <h4>
-          Search apps installable via{" "}
-          <a href="https://scoop.sh" target="_blank" rel="noopener noreferrer">
-            scoop
-          </a>
+          Search apps installable via <A href="https://scoop.sh">scoop</A>
         </h4>
       </header>
       <main>
@@ -56,13 +53,7 @@ function App() {
               <li key={result.refIndex}>
                 <p>
                   <b>
-                    <a
-                      href={result.item.homepage}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {result.item.name}
-                    </a>
+                    <A href={result.item.homepage}>{result.item.name}</A>
                   </b>{" "}
                   {result.item.version} <i>{result.item.bucket}</i>
                 </p>
@@ -75,25 +66,22 @@ function App() {
         </ul>
       </main>
       <footer>
-        Shovel is
-        <a
-          href="https://github.com/mertd/shovel"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          open source
-        </a>
-        . Your use of this app is governed by the
-        <a
-          href="https://github.com/mertd/shovel/blob/master/LICENCE"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        Shovel is <A href="https://github.com/mertd/shovel">open source</A>.
+        Your use of this app is governed by the{" "}
+        <A href="https://github.com/mertd/shovel/blob/master/LICENCE">
           MIT Licence
-        </a>
+        </A>
         .
       </footer>
     </div>
+  );
+}
+
+function A(props) {
+  return (
+    <a target="_blank" rel="noopener noreferrer" {...props}>
+      {props.children}
+    </a>
   );
 }
 
