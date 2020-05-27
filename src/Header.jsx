@@ -1,5 +1,5 @@
 import React from "react";
-import A from "./A";
+import A from "./components/A";
 
 function Header(props) {
   return (
