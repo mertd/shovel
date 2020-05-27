@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider>
-        <Box>
+        <Box p="7rem" bg="gray.100" height="100%">
           <Header />
           <Main />
           <Footer />
