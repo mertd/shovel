@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Fuse from "fuse.js";
+import { ThemeProvider } from "@chakra-ui/core";
 
 const fuseOptions = {
   threshold: 0.2,
@@ -36,43 +37,45 @@ function App() {
 
   return (
     <div className="App">
-      <header>
-        <h1>Shovel</h1>
-        <h4>
-          Search apps installable via <A href="https://scoop.sh">scoop</A>
-        </h4>
-      </header>
-      <main>
-        <input
-          value={search}
-          onChange={(event) => setSearch(event.target.value)}
-        />
-        <ul>
-          {results &&
-            results.map((result) => (
-              <li key={result.refIndex}>
-                <p>
-                  <b>
-                    <A href={result.item.homepage}>{result.item.name}</A>
-                  </b>{" "}
-                  {result.item.version} <i>{result.item.bucket}</i>
-                </p>
-                <p>{result.item.description}</p>
-                <p>
-                  <code>scoop install {result.item.name}</code>
-                </p>
-              </li>
-            ))}
-        </ul>
-      </main>
-      <footer>
-        Shovel is <A href="https://github.com/mertd/shovel">open source</A>.
-        Your use of this app is governed by the{" "}
-        <A href="https://github.com/mertd/shovel/blob/master/LICENCE">
-          MIT Licence
-        </A>
-        .
-      </footer>
+      <ThemeProvider>
+        <header>
+          <h1>Shovel</h1>
+          <h4>
+            Search apps installable via <A href="https://scoop.sh">scoop</A>
+          </h4>
+        </header>
+        <main>
+          <input
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+          />
+          <ul>
+            {results &&
+              results.map((result) => (
+                <li key={result.refIndex}>
+                  <p>
+                    <b>
+                      <A href={result.item.homepage}>{result.item.name}</A>
+                    </b>{" "}
+                    {result.item.version} <i>{result.item.bucket}</i>
+                  </p>
+                  <p>{result.item.description}</p>
+                  <p>
+                    <code>scoop install {result.item.name}</code>
+                  </p>
+                </li>
+              ))}
+          </ul>
+        </main>
+        <footer>
+          Shovel is <A href="https://github.com/mertd/shovel">open source</A>.
+          Your use of this app is governed by the{" "}
+          <A href="https://github.com/mertd/shovel/blob/master/LICENCE">
+            MIT Licence
+          </A>
+          .
+        </footer>
+      </ThemeProvider>
     </div>
   );
 }
