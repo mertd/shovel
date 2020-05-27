@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Fuse from "fuse.js";
-import A from "../components/A";
-import { Spinner, Input } from "@chakra-ui/core";
+import { Spinner, Input, Stack } from "@chakra-ui/core";
+import SearchResult from "../components/SearchResult";
 
 const fuseOptions = {
   threshold: 0.2,
@@ -46,21 +46,9 @@ function Search(props) {
         value={search}
         onChange={(event) => setSearch(event.target.value)}
       />
-      {results &&
-        results.map((result) => (
-          <div key={result.refIndex}>
-            <p>
-              <b>
-                <A href={result.item.homepage}>{result.item.name}</A>
-              </b>{" "}
-              {result.item.version} <i>{result.item.bucket}</i>
-            </p>
-            <p>{result.item.description}</p>
-            <p>
-              <code>scoop install {result.item.name}</code>
-            </p>
-          </div>
-        ))}
+      <Stack spacing="1rem" pt="1rem" pb="1rem">
+        {results && results.map((result) => <SearchResult result={result} />)}
+      </Stack>
       {props.children}
     </div>
   );
