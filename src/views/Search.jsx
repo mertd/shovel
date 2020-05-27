@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Fuse from "fuse.js";
-import { Spinner, Input, Stack, Box, FormControl } from "@chakra-ui/core";
+import { Spinner, Input, Stack, Box } from "@chakra-ui/core";
 import SearchResult from "../components/SearchResult";
 
 const fuseOptions = {

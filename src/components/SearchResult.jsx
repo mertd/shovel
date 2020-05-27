@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Tag, Code } from "@chakra-ui/core";
+import { Box, Tag, Code, Divider, Heading, Icon, Text } from "@chakra-ui/core";
 import A from "../components/A";
 
 function SearchResult(props) {
@@ -13,16 +13,16 @@ function SearchResult(props) {
       p="1rem"
       {...props}
     >
-      <p>
-        <b>
-          <A href={result.item.homepage}>{result.item.name}</A>
-        </b>{" "}
-        <Tag>{result.item.version}</Tag> <Tag>{result.item.bucket}</Tag>
-      </p>
-      <p>{result.item.description}</p>
-      <p>
-        <Code>scoop install {result.item.name}</Code>
-      </p>
+      <Heading size="sm">
+        {result.item.name}{" "}
+        <A href={result.item.homepage}>
+          <Icon name="external-link" />
+        </A>
+      </Heading>
+      <Divider />
+      <Tag>{result.item.version}</Tag> <Tag>{result.item.bucket}</Tag>
+      <Text>{result.item.description}</Text>
+      <Code>scoop install {result.item.name}</Code>
       {props.children}
     </Box>
   );
