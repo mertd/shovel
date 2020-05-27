@@ -46,23 +46,21 @@ function Search(props) {
         value={search}
         onChange={(event) => setSearch(event.target.value)}
       />
-      <ul>
-        {results &&
-          results.map((result) => (
-            <li key={result.refIndex}>
-              <p>
-                <b>
-                  <A href={result.item.homepage}>{result.item.name}</A>
-                </b>{" "}
-                {result.item.version} <i>{result.item.bucket}</i>
-              </p>
-              <p>{result.item.description}</p>
-              <p>
-                <code>scoop install {result.item.name}</code>
-              </p>
-            </li>
-          ))}
-      </ul>
+      {results &&
+        results.map((result) => (
+          <div key={result.refIndex}>
+            <p>
+              <b>
+                <A href={result.item.homepage}>{result.item.name}</A>
+              </b>{" "}
+              {result.item.version} <i>{result.item.bucket}</i>
+            </p>
+            <p>{result.item.description}</p>
+            <p>
+              <code>scoop install {result.item.name}</code>
+            </p>
+          </div>
+        ))}
       {props.children}
     </div>
   );
