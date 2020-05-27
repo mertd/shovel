@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Fuse from "fuse.js";
 import A from "../components/A";
-import { Spinner } from "@chakra-ui/core";
+import { Spinner, Input } from "@chakra-ui/core";
 
 const fuseOptions = {
   threshold: 0.2,
@@ -42,7 +42,7 @@ function Search(props) {
 
   return (
     <div {...props}>
-      <input
+      <Input
         value={search}
         onChange={(event) => setSearch(event.target.value)}
       />
