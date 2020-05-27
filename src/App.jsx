@@ -9,14 +9,7 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider>
-        <Box
-          pt="5rem"
-          pb="5rem"
-          pl="20vw"
-          pr="20vw"
-          bg="gray.100"
-          height="100%"
-        >
+        <Box pt="5rem" pb="5rem" pl="20vw" pr="20vw" bg="gray.100">
           <Header />
           <Main />
           <Footer />
