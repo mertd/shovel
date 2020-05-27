@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Fuse from "fuse.js";
 import { ThemeProvider } from "@chakra-ui/core";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import A from "./components/A";
 
 const fuseOptions = {
   threshold: 0.2,
@@ -38,12 +41,7 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider>
-        <header>
-          <h1>Shovel</h1>
-          <h4>
-            Search apps installable via <A href="https://scoop.sh">scoop</A>
-          </h4>
-        </header>
+        <Header />
         <main>
           <input
             value={search}
@@ -67,24 +65,9 @@ function App() {
               ))}
           </ul>
         </main>
-        <footer>
-          Shovel is <A href="https://github.com/mertd/shovel">open source</A>.
-          Your use of this app is governed by the{" "}
-          <A href="https://github.com/mertd/shovel/blob/master/LICENCE">
-            MIT Licence
-          </A>
-          .
-        </footer>
+        <Footer />
       </ThemeProvider>
     </div>
-  );
-}
-
-function A(props) {
-  return (
-    <a target="_blank" rel="noopener noreferrer" {...props}>
-      {props.children}
-    </a>
   );
 }
 
