@@ -5,14 +5,7 @@ import A from "../components/A";
 function SearchResult(props) {
   const result = props.result;
   return (
-    <Box
-      key={result.refIndex}
-      borderWidth="1px"
-      bg="white"
-      shadow="md"
-      rounded="md"
-      {...props}
-    >
+    <Box borderWidth="1px" bg="white" shadow="md" rounded="md" {...props}>
       <p>
         <b>
           <A href={result.item.homepage}>{result.item.name}</A>

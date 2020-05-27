@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Fuse from "fuse.js";
-import { Spinner, Input, Stack } from "@chakra-ui/core";
+import { Spinner, Input, Stack, Box } from "@chakra-ui/core";
 import SearchResult from "../components/SearchResult";
 
 const fuseOptions = {
@@ -42,14 +42,20 @@ function Search(props) {
 
   return (
     <div {...props}>
-      <Input
-        value={search}
-        onChange={(event) => setSearch(event.target.value)}
-      />
-      <Stack spacing="1rem" pt="1rem" pb="1rem">
-        {results && results.map((result) => <SearchResult result={result} />)}
-      </Stack>
-      {props.children}
+      <Box>
+        <Input
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+          placeholder="Search"
+        />
+        <Stack spacing="1rem" pt="1rem" pb="1rem">
+          {results &&
+            results.map((result) => (
+              <SearchResult key={result.refIndex} result={result} />
+            ))}
+        </Stack>
+        {props.children}
+      </Box>
     </div>
   );
 }
