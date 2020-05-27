@@ -1,13 +1,14 @@
 import React from "react";
 import A from "./components/A";
+import { Heading } from "@chakra-ui/core";
 
 function Header(props) {
   return (
     <header {...props}>
-      <h1>Shovel</h1>
-      <h4>
+      <Heading size="xl">Shovel</Heading>
+      <Heading size="sm">
         Search apps installable via <A href="https://scoop.sh">scoop</A>
-      </h4>
+      </Heading>
       {props.children}
     </header>
   );
