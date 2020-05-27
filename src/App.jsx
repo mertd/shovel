@@ -1,4 +1,5 @@
 import React from "react";
+import "./App.css";
 import { ThemeProvider } from "@chakra-ui/core";
 import Header from "./Header";
 import Footer from "./Footer";
