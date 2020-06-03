@@ -31,8 +31,11 @@ function Search(props) {
   }, [manifests]);
 
   useEffect(() => {
-    const results = fuse.search(search);
-    setResults(results);
+    if (search.length > 1) {
+      // skip lengthy searches for one character
+      const results = fuse.search(search);
+      setResults(results);
+    }
     // eslint-disable-next-line
   }, [search]);
 
