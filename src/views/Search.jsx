@@ -33,14 +33,13 @@ function Search(props) {
   }, [manifests]);
 
   useEffect(() => {
-    if (timer.current) {
-      clearTimeout(timer.current);
-      timer.current = null;
-    }
+    // use timeout to avoid unnecessary intermediate searches
+    clearTimeout(timer.current);
     timer.current = setTimeout(() => {
       const results = fuse.search(search);
       setResults(results);
-    }, 400);
+      timer.current = null;
+    }, 300);
     // eslint-disable-next-line
   }, [search]);
 
@@ -63,6 +62,7 @@ function Search(props) {
               <SearchResult key={result.refIndex} result={result} />
             ))}
         </Stack>
+        {!timer.current && <Spinner />}
         {props.children}
       </Box>
     </div>
