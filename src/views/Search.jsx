@@ -38,7 +38,6 @@ function Search(props) {
     timer.current = setTimeout(() => {
       const results = fuse.search(search);
       setResults(results);
-      timer.current = null;
     }, 300);
     // eslint-disable-next-line
   }, [search]);
@@ -62,7 +61,6 @@ function Search(props) {
               <SearchResult key={result.refIndex} result={result} />
             ))}
         </Stack>
-        {!timer.current && <Spinner />}
         {props.children}
       </Box>
     </div>
