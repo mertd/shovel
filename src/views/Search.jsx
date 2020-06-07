@@ -40,7 +40,7 @@ function Search(props) {
     timer.current = setTimeout(() => {
       const results = fuse.search(search);
       setResults(results);
-    }, 1000);
+    }, 400);
     // eslint-disable-next-line
   }, [search]);
 
