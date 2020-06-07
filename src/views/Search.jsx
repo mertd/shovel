@@ -14,7 +14,7 @@ function Search(props) {
   const [manifests, setManifests] = useState([]);
   const [fuse, setFuse] = useState(new Fuse(manifests, fuseOptions));
 
-  let timer = useRef(null);
+  const timer = useRef(null);
 
   async function getManifests() {
     const response = await fetch(
