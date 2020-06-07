@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Fuse from "fuse.js";
 import { Spinner, Input, Stack, Box } from "@chakra-ui/core";
 import SearchResult from "../components/SearchResult";
@@ -13,6 +13,8 @@ function Search(props) {
   const [results, setResults] = useState([]);
   const [manifests, setManifests] = useState([]);
   const [fuse, setFuse] = useState(new Fuse(manifests, fuseOptions));
+
+  const timer = useRef(null);
 
   async function getManifests() {
     const response = await fetch(
@@ -31,11 +33,12 @@ function Search(props) {
   }, [manifests]);
 
   useEffect(() => {
-    if (search.length > 1) {
-      // skip lengthy searches for one character
+    // use timeout to avoid unnecessary intermediate searches
+    clearTimeout(timer.current);
+    timer.current = setTimeout(() => {
       const results = fuse.search(search);
       setResults(results);
-    }
+    }, 300);
     // eslint-disable-next-line
   }, [search]);
 
