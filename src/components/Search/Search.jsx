@@ -56,7 +56,8 @@ function Search(props) {
           boxSizing="border-box"
         />
         <Text as="sub" hidden={!results.length}>
-          {results.length} results
+          Searched <b>{manifests.length}</b> manifests and returned{" "}
+          <b>{results.length}</b> results.
         </Text>
         <Stack spacing="1rem" pt="1rem" pb="1rem">
           {results &&
