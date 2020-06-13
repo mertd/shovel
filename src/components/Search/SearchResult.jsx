@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Tag, Code, Divider, Heading, Icon, Text } from "@chakra-ui/core";
-import A from "../components/A";
+import A from "../A";
 
 function SearchResult(props) {
   const result = props.result;

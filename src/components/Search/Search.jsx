@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Fuse from "fuse.js";
-import { Spinner, Input, Stack, Box } from "@chakra-ui/core";
-import SearchResult from "../components/SearchResult";
+import { Spinner, Input, Stack, Box, Text } from "@chakra-ui/core";
+import SearchResult from "./SearchResult";
 
 const fuseOptions = {
   threshold: 0.2,
@@ -15,6 +15,8 @@ function Search(props) {
   const [fuse, setFuse] = useState(new Fuse(manifests, fuseOptions));
 
   const timer = useRef(null);
+  const stopWatch = useRef([0, 0]);
+  const input = useRef(null);
 
   async function getManifests() {
     const response = await fetch(
@@ -29,14 +31,19 @@ function Search(props) {
   }, []);
 
   useEffect(() => {
-    setFuse(new Fuse(manifests, fuseOptions));
+    if (manifests.length > 0) {
+      setFuse(new Fuse(manifests, fuseOptions));
+      input.current.focus();
+    }
   }, [manifests]);
 
   useEffect(() => {
     // use timeout to avoid unnecessary intermediate searches
     clearTimeout(timer.current);
     timer.current = setTimeout(() => {
+      stopWatch.current[0] = performance.now();
       const results = fuse.search(search);
+      stopWatch.current[1] = performance.now();
       setResults(results);
     }, 300);
     // eslint-disable-next-line
@@ -54,7 +61,13 @@ function Search(props) {
           onChange={(event) => setSearch(event.target.value)}
           placeholder="Search"
           boxSizing="border-box"
+          ref={input}
         />
+        <Text as="sub" hidden={!search.length}>
+          Searched <b>{manifests.length}</b> manifests in{" "}
+          <b>{stopWatch.current[1] - stopWatch.current[0]}</b>ms and found{" "}
+          <b>{results.length}</b> result{results.length === 1 || "s"}.
+        </Text>
         <Stack spacing="1rem" pt="1rem" pb="1rem">
           {results &&
             results.map((result) => (
