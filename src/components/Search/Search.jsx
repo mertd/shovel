@@ -16,6 +16,7 @@ function Search(props) {
 
   const timer = useRef(null);
   const stopWatch = useRef([0, 0]);
+  const input = useRef(null);
 
   async function getManifests() {
     const response = await fetch(
@@ -31,6 +32,7 @@ function Search(props) {
 
   useEffect(() => {
     setFuse(new Fuse(manifests, fuseOptions));
+    input.current && input.current.focus();
   }, [manifests]);
 
   useEffect(() => {
@@ -57,6 +59,7 @@ function Search(props) {
           onChange={(event) => setSearch(event.target.value)}
           placeholder="Search"
           boxSizing="border-box"
+          ref={input}
         />
         <Text as="sub" hidden={!search.length}>
           Searched <b>{manifests.length}</b> manifests in{" "}
