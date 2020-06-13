@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Fuse from "fuse.js";
-import { Spinner, Input, Stack, Box } from "@chakra-ui/core";
+import { Spinner, Input, Stack, Box, Text } from "@chakra-ui/core";
 import SearchResult from "./SearchResult";
 
 const fuseOptions = {
@@ -55,6 +55,9 @@ function Search(props) {
           placeholder="Search"
           boxSizing="border-box"
         />
+        <Text as="sub" hidden={!results.length}>
+          {results.length} results
+        </Text>
         <Stack spacing="1rem" pt="1rem" pb="1rem">
           {results &&
             results.map((result) => (
