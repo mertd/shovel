@@ -60,7 +60,7 @@ function Search(props) {
         />
         <Text as="sub" hidden={!search.length}>
           Searched <b>{manifests.length}</b> manifests in{" "}
-          <b>{stopWatch.current[1] - stopWatch.current[0]}</b>ms and returned{" "}
+          <b>{stopWatch.current[1] - stopWatch.current[0]}</b>ms and found{" "}
           <b>{results.length}</b> results.
         </Text>
         <Stack spacing="1rem" pt="1rem" pb="1rem">
