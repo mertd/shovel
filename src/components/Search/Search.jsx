@@ -31,8 +31,10 @@ function Search(props) {
   }, []);
 
   useEffect(() => {
-    setFuse(new Fuse(manifests, fuseOptions));
-    input.current && input.current.focus();
+    if (manifests.length > 0) {
+      setFuse(new Fuse(manifests, fuseOptions));
+      input.current.focus();
+    }
   }, [manifests]);
 
   useEffect(() => {
