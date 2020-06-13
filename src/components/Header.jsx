@@ -1,5 +1,5 @@
 import React from "react";
-import A from "./components/A";
+import A from "./A";
 import { Heading, Box } from "@chakra-ui/core";
 
 function Header(props) {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Fuse from "fuse.js";
 import { Spinner, Input, Stack, Box } from "@chakra-ui/core";
-import SearchResult from "../components/SearchResult";
+import SearchResult from "./SearchResult";
 
 const fuseOptions = {
   threshold: 0.2,
