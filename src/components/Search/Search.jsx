@@ -15,6 +15,7 @@ function Search(props) {
   const [fuse, setFuse] = useState(new Fuse(manifests, fuseOptions));
 
   const timer = useRef(null);
+  const stopWatch = useRef([0, 0]);
 
   async function getManifests() {
     const response = await fetch(
@@ -36,7 +37,9 @@ function Search(props) {
     // use timeout to avoid unnecessary intermediate searches
     clearTimeout(timer.current);
     timer.current = setTimeout(() => {
+      stopWatch.current[0] = performance.now();
       const results = fuse.search(search);
+      stopWatch.current[1] = performance.now();
       setResults(results);
     }, 300);
     // eslint-disable-next-line
@@ -55,8 +58,9 @@ function Search(props) {
           placeholder="Search"
           boxSizing="border-box"
         />
-        <Text as="sub" hidden={!results.length}>
-          Searched <b>{manifests.length}</b> manifests and returned{" "}
+        <Text as="sub" hidden={!search.length}>
+          Searched <b>{manifests.length}</b> manifests in{" "}
+          <b>{stopWatch.current[1] - stopWatch.current[0]}</b>ms and returned{" "}
           <b>{results.length}</b> results.
         </Text>
         <Stack spacing="1rem" pt="1rem" pb="1rem">
