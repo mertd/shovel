@@ -1,6 +1,7 @@
 import React from "react";
-import { Box, Tag, Code, Divider, Heading, Icon, Text } from "@chakra-ui/core";
+import { Box, Tag, Divider, Heading, Icon, Text } from "@chakra-ui/core";
 import A from "../A";
+import CopyCode from "../CopyCode";
 
 function SearchResult(props) {
   const result = props.result;
@@ -28,10 +29,10 @@ function SearchResult(props) {
       <Tag>{result.item.version}</Tag> <Tag>{result.item.bucket}</Tag>
       <Text>{result.item.description}</Text>
       <p hidden={result.item.bucket === "main"}>
-        <Code>scoop bucket add {result.item.bucket}</Code>
+        <CopyCode>scoop bucket add {result.item.bucket}</CopyCode>
       </p>
       <p>
-        <Code>scoop install {result.item.name}</Code>
+        <CopyCode>scoop install {result.item.name}</CopyCode>
       </p>
       {props.children}
     </Box>
