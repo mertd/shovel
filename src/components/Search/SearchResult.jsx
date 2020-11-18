@@ -15,12 +15,12 @@ function SearchResult(props) {
     >
       <Heading size="sm">
         {result.item.name}{" "}
-        <A href={result.item.homepage}>
-          <Icon name="external-link" title="Homepage" />
+        <A href={result.item.homepage} title="Homepage">
+          <Icon name="external-link" />
         </A>{" "}
         {result.item.checkver.github && (
-          <A href={result.item.checkver.github}>
-            <Icon name="edit" title="Source Code" />
+          <A href={result.item.checkver.github} title="Source Code">
+            <Icon name="edit" />
           </A>
         )}
       </Heading>
