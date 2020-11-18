@@ -15,14 +15,24 @@ function SearchResult(props) {
     >
       <Heading size="sm">
         {result.item.name}{" "}
-        <A href={result.item.homepage}>
+        <A href={result.item.homepage} title="Homepage">
           <Icon name="external-link" />
-        </A>
+        </A>{" "}
+        {result.item.checkver && result.item.checkver.github && (
+          <A href={result.item.checkver.github} title="Source Code">
+            <Icon name="edit" />
+          </A>
+        )}
       </Heading>
       <Divider />
       <Tag>{result.item.version}</Tag> <Tag>{result.item.bucket}</Tag>
       <Text>{result.item.description}</Text>
-      <Code>scoop install {result.item.name}</Code>
+      <p hidden={result.item.bucket === "main"}>
+        <Code>scoop bucket add {result.item.bucket}</Code>
+      </p>
+      <p>
+        <Code>scoop install {result.item.name}</Code>
+      </p>
       {props.children}
     </Box>
   );
