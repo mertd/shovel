@@ -1,4 +1,4 @@
-import { Code, Icon, Button, useToast } from "@chakra-ui/core";
+import { Code, useToast, IconButton } from "@chakra-ui/core";
 import React from "react";
 
 export default function CopyCode({ code }) {
@@ -26,10 +26,13 @@ export default function CopyCode({ code }) {
 
   return (
     <div>
-      <Code>{code}</Code>
-      <Button size="xs" variant="outline" onClick={toClipboard}>
-        <Icon name="copy" />
-      </Button>
+      <Code>{code}</Code>{" "}
+      <IconButton
+        size="xs"
+        variant="outline"
+        onClick={toClipboard}
+        icon="copy"
+      />
     </div>
   );
 }
