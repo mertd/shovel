@@ -10,7 +10,7 @@ const fuseOptions = {
 
 function Search(props) {
   const [search, setSearch] = useState("");
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState(null);
   const [manifests, setManifests] = useState([]);
   const [fuse, setFuse] = useState(new Fuse(manifests, fuseOptions));
 
@@ -38,6 +38,7 @@ function Search(props) {
   }, [manifests]);
 
   useEffect(() => {
+    if (!search) return setResults(null);
     // use timeout to avoid unnecessary intermediate searches
     clearTimeout(timer.current);
     timer.current = setTimeout(() => {
@@ -67,11 +68,13 @@ function Search(props) {
           boxSizing="border-box"
           ref={input}
         />
-        <Text as="sub" hidden={!search.length}>
-          Searched <b>{manifests.length}</b> manifests in{" "}
-          <b>{stopWatchResult}</b>ms and found <b>{results.length}</b> result
-          {results.length === 1 || "s"}.
-        </Text>
+        {results && (
+          <Text as="sub">
+            Searched <b>{manifests.length}</b> manifests in{" "}
+            <b>{stopWatchResult}</b>ms and found <b>{results.length}</b> result
+            {results.length === 1 || "s"}.
+          </Text>
+        )}
         <Stack spacing="1rem" pt="1rem" pb="1rem">
           {results &&
             results.map((result) => (
