@@ -29,10 +29,10 @@ function SearchResult(props) {
       <Tag>{result.item.version}</Tag> <Tag>{result.item.bucket}</Tag>
       <Text>{result.item.description}</Text>
       <p hidden={result.item.bucket === "main"}>
-        <CopyCode>scoop bucket add {result.item.bucket}</CopyCode>
+        <CopyCode code={`scoop bucket add ${result.item.bucket}`} />
       </p>
       <p>
-        <CopyCode>scoop install {result.item.name}</CopyCode>
+        <CopyCode code={`scoop install ${result.item.name}`} />
       </p>
       {props.children}
     </Box>
