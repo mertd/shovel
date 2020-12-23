@@ -30,7 +30,7 @@ function Search(props) {
       toast({
         status: "error",
         title: "Error",
-        description: "Couldn't fetch or parse manifests.",
+        description: "Couldn't fetch or parse manifests. ⛔",
         duration: null, // don't hide as this error will render the app unusable
       });
     }

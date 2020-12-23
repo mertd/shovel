@@ -10,7 +10,7 @@ export default function CopyCode({ code }) {
       toast({
         status: "success",
         title: "Copied",
-        description: "You can paste this into your terminal now.",
+        description: "You can paste this into your terminal now. 📋",
         duration: 3000,
       });
     } catch (error) {
@@ -18,7 +18,7 @@ export default function CopyCode({ code }) {
         status: "error",
         title: "Error",
         description:
-          "Copying to clipboard may not be supported in your browser.",
+          "Copying to clipboard may not be supported in your browser. 📵",
         duration: 3000,
       });
     }
