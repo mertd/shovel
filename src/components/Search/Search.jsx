@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Fuse from "fuse.js";
-import { Spinner, Input, Stack, Box, Text } from "@chakra-ui/core";
+import { Spinner, Input, Stack, Box, Text, useToast } from "@chakra-ui/core";
 import SearchResult from "./SearchResult";
 
 const fuseOptions = {
@@ -13,21 +13,32 @@ function Search(props) {
   const [results, setResults] = useState(null);
   const [manifests, setManifests] = useState([]);
   const [fuse, setFuse] = useState(new Fuse(manifests, fuseOptions));
+  const toast = useToast();
 
   const timer = useRef(null);
   const stopWatch = useRef([0, 0]);
   const input = useRef(null);
 
   async function getManifests() {
-    const response = await fetch(
-      "https://mertd.github.io/shovel-data/manifests.json"
-    );
-    const json = await response.json();
-    setManifests(json);
+    try {
+      const response = await fetch(
+        "https://mertd.github.io/shovel-data/manifests.json"
+      );
+      const json = await response.json();
+      setManifests(json);
+    } catch (error) {
+      toast({
+        status: "error",
+        title: "Error",
+        description: "Couldn't fetch or parse manifests ⛔",
+        duration: null, // don't hide as this error will render the app unusable
+      });
+    }
   }
 
   useEffect(() => {
     getManifests();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
