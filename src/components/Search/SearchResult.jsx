@@ -19,6 +19,9 @@ function SearchResult(props) {
         <A href={result.item.homepage} title="Homepage">
           <Icon name="external-link" />
         </A>{" "}
+        <A href={result.item.manifestURL} title="Manifest">
+          <Icon name="info-outline" />
+        </A>{" "}
         {result.item.checkver && result.item.checkver.github && (
           <A href={result.item.checkver.github} title="Source Code">
             <Icon name="edit" />
