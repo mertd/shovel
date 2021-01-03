@@ -2,14 +2,21 @@ import React, { useState, useEffect, useRef } from "react";
 import Fuse from "fuse.js";
 import { Spinner, Input, Stack, Box, Text, useToast } from "@chakra-ui/core";
 import SearchResult from "./SearchResult";
+import { useLocation, useHistory } from "react-router-dom";
 
 const fuseOptions = {
   threshold: 0.2,
   keys: ["name", "description"],
 };
 
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
 function Search(props) {
-  const [search, setSearch] = useState("");
+  const query = useQuery();
+  const history = useHistory();
+  const [search, setSearch] = useState(query.get("q"));
   const [results, setResults] = useState(null);
   const [manifests, setManifests] = useState([]);
   const [fuse, setFuse] = useState(new Fuse(manifests, fuseOptions));
@@ -46,17 +53,32 @@ function Search(props) {
       setFuse(new Fuse(manifests, fuseOptions));
       input.current.focus();
     }
+    //eslint-disable-next-line
   }, [manifests]);
 
   useEffect(() => {
+    // trigger search when fuse is initialized
+    if (search) {
+      doSearch();
+    }
+    // eslint-disable-next-line
+  }, [fuse]);
+
+  function doSearch() {
+    stopWatch.current[0] = performance.now();
+    const results = fuse.search(search);
+    stopWatch.current[1] = performance.now();
+    setResults(results);
+  }
+
+  useEffect(() => {
     if (!search) return setResults(null);
+    // set query parameter
+    history.replace("/search?q=" + search);
     // use timeout to avoid unnecessary intermediate searches
     clearTimeout(timer.current);
     timer.current = setTimeout(() => {
-      stopWatch.current[0] = performance.now();
-      const results = fuse.search(search);
-      stopWatch.current[1] = performance.now();
-      setResults(results);
+      doSearch();
     }, 300);
     // eslint-disable-next-line
   }, [search]);
