@@ -52,17 +52,32 @@ function Search(props) {
       setFuse(new Fuse(manifests, fuseOptions));
       input.current.focus();
     }
+    //eslint-disable-next-line
   }, [manifests]);
 
   useEffect(() => {
+    // trigger search when fuse is initialized
+    if (search) {
+      doSearch();
+    }
+    // eslint-disable-next-line
+  }, [fuse]);
+
+  function doSearch() {
+    stopWatch.current[0] = performance.now();
+    const results = fuse.search(search);
+    stopWatch.current[1] = performance.now();
+    setResults(results);
+  }
+
+  useEffect(() => {
     if (!search) return setResults(null);
+    // set query parameter
+    query.set("q", search);
     // use timeout to avoid unnecessary intermediate searches
     clearTimeout(timer.current);
     timer.current = setTimeout(() => {
-      stopWatch.current[0] = performance.now();
-      const results = fuse.search(search);
-      stopWatch.current[1] = performance.now();
-      setResults(results);
+      doSearch();
     }, 300);
     // eslint-disable-next-line
   }, [search]);
