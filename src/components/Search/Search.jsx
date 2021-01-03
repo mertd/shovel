@@ -2,14 +2,20 @@ import React, { useState, useEffect, useRef } from "react";
 import Fuse from "fuse.js";
 import { Spinner, Input, Stack, Box, Text, useToast } from "@chakra-ui/core";
 import SearchResult from "./SearchResult";
+import { useLocation } from "react-router-dom";
 
 const fuseOptions = {
   threshold: 0.2,
   keys: ["name", "description"],
 };
 
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
 function Search(props) {
-  const [search, setSearch] = useState("");
+  const query = useQuery();
+  const [search, setSearch] = useState(query.get("q"));
   const [results, setResults] = useState(null);
   const [manifests, setManifests] = useState([]);
   const [fuse, setFuse] = useState(new Fuse(manifests, fuseOptions));
