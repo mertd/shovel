@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Fuse from "fuse.js";
 import { Spinner, Input, Stack, Box, Text, useToast } from "@chakra-ui/core";
 import SearchResult from "./SearchResult";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
 const fuseOptions = {
   threshold: 0.2,
@@ -15,6 +15,7 @@ function useQuery() {
 
 function Search(props) {
   const query = useQuery();
+  const history = useHistory();
   const [search, setSearch] = useState(query.get("q"));
   const [results, setResults] = useState(null);
   const [manifests, setManifests] = useState([]);
@@ -73,7 +74,7 @@ function Search(props) {
   useEffect(() => {
     if (!search) return setResults(null);
     // set query parameter
-    query.set("q", search);
+    history.replace("/search?q=" + search);
     // use timeout to avoid unnecessary intermediate searches
     clearTimeout(timer.current);
     timer.current = setTimeout(() => {
