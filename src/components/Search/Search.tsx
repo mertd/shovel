@@ -115,7 +115,7 @@ function Search(props: React.HTMLProps<HTMLDivElement>) {
         )}
         <Stack spacing="1rem" pt="1rem" pb="1rem">
           {results &&
-            results.map((result: any) => (
+            results.map((result) => (
               <SearchResult key={result.refIndex} result={result} />
             ))}
         </Stack>
