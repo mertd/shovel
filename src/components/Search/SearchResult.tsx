@@ -11,6 +11,7 @@ import {
 import A from "../A";
 import CopyCode from "../CopyCode";
 import Manifest from "../../types/Manifest";
+import { Link } from "react-router-dom";
 
 interface SearchResultProps extends BoxProps {
   manifest: Manifest;
@@ -27,7 +28,9 @@ function SearchResult(props: SearchResultProps) {
       {...props}
     >
       <Heading size="sm">
-        {props.manifest.name}{" "}
+        <Link to={`/manifest/${props.manifest.name}`}>
+          {props.manifest.name}
+        </Link>{" "}
         <A href={props.manifest.homepage} title="Homepage">
           <Icon name="external-link" />
         </A>{" "}

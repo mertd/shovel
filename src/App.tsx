@@ -18,8 +18,8 @@ function App() {
     <div className="App">
       <ThemeProvider>
         <ManifestsProvider>
-          <Header />
           <Router>
+            <Header />
             <Switch>
               <Route path="/search">
                 <Main />
