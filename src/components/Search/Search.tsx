@@ -13,18 +13,18 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-function Search(props) {
+function Search(props: React.HTMLProps<HTMLDivElement>) {
   const query = useQuery();
   const history = useHistory();
-  const [search, setSearch] = useState(query.get("q"));
-  const [results, setResults] = useState(null);
+  const [search, setSearch] = useState(query.get("q") || "");
+  const [results, setResults] = useState<any>(null);
   const [manifests, setManifests] = useState([]);
   const [fuse, setFuse] = useState(new Fuse(manifests, fuseOptions));
   const toast = useToast();
 
-  const timer = useRef(null);
+  const timer = useRef<NodeJS.Timeout | null>(null);
   const stopWatch = useRef([0, 0]);
-  const input = useRef(null);
+  const input = useRef<HTMLInputElement | null>(null);
 
   async function getManifests() {
     try {
@@ -51,7 +51,7 @@ function Search(props) {
   useEffect(() => {
     if (manifests.length > 0) {
       setFuse(new Fuse(manifests, fuseOptions));
-      input.current.focus();
+      input?.current?.focus();
     }
     //eslint-disable-next-line
   }, [manifests]);
@@ -76,7 +76,7 @@ function Search(props) {
     // set query parameter
     history.replace("/search?q=" + search);
     // use timeout to avoid unnecessary intermediate searches
-    clearTimeout(timer.current);
+    timer.current && clearTimeout(timer.current);
     timer.current = setTimeout(() => {
       doSearch();
     }, 300);
@@ -96,7 +96,9 @@ function Search(props) {
       <Box>
         <Input
           value={search}
-          onChange={(event) => setSearch(event.target.value)}
+          onChange={(event: React.FormEvent<HTMLInputElement>) =>
+            setSearch(event.currentTarget.value)
+          }
           placeholder="Search"
           boxSizing="border-box"
           ref={input}
@@ -110,7 +112,7 @@ function Search(props) {
         )}
         <Stack spacing="1rem" pt="1rem" pb="1rem">
           {results &&
-            results.map((result) => (
+            results.map((result: any) => (
               <SearchResult key={result.refIndex} result={result} />
             ))}
         </Stack>
