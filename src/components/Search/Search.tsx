@@ -3,6 +3,7 @@ import Fuse from "fuse.js";
 import { Spinner, Input, Stack, Box, Text, useToast } from "@chakra-ui/core";
 import SearchResult from "./SearchResult";
 import { useLocation, useHistory } from "react-router-dom";
+import Manifest from "../../types/Manifest";
 
 const fuseOptions = {
   threshold: 0.2,
@@ -17,7 +18,9 @@ function Search(props: React.HTMLProps<HTMLDivElement>) {
   const query = useQuery();
   const history = useHistory();
   const [search, setSearch] = useState(query.get("q") || "");
-  const [results, setResults] = useState<any>(null);
+  const [results, setResults] = useState<Fuse.FuseResult<Manifest>[] | null>(
+    null
+  );
   const [manifests, setManifests] = useState([]);
   const [fuse, setFuse] = useState(new Fuse(manifests, fuseOptions));
   const toast = useToast();
@@ -66,7 +69,7 @@ function Search(props: React.HTMLProps<HTMLDivElement>) {
 
   function doSearch() {
     stopWatch.current[0] = performance.now();
-    const results = fuse.search(search);
+    const results = fuse.search<Manifest>(search);
     stopWatch.current[1] = performance.now();
     setResults(results);
   }

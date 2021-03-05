@@ -10,9 +10,11 @@ import {
 } from "@chakra-ui/core";
 import A from "../A";
 import CopyCode from "../CopyCode";
+import Fuse from "fuse.js";
+import Manifest from "../../types/Manifest";
 
 interface SearchResultProps extends BoxProps {
-  result: any;
+  result: Fuse.FuseResult<Manifest>;
 }
 
 function SearchResult(props: SearchResultProps) {
