@@ -3,6 +3,7 @@ import Fuse from "fuse.js";
 import { Spinner, Input, Stack, Box, Text, useToast } from "@chakra-ui/core";
 import SearchResult from "./SearchResult";
 import { useLocation, useHistory } from "react-router-dom";
+import Manifest from "../../types/Manifest";
 
 const fuseOptions = {
   threshold: 0.2,
@@ -13,18 +14,20 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-function Search(props) {
+function Search(props: React.HTMLProps<HTMLDivElement>) {
   const query = useQuery();
   const history = useHistory();
-  const [search, setSearch] = useState(query.get("q"));
-  const [results, setResults] = useState(null);
+  const [search, setSearch] = useState(query.get("q") || "");
+  const [results, setResults] = useState<Fuse.FuseResult<Manifest>[] | null>(
+    null
+  );
   const [manifests, setManifests] = useState([]);
   const [fuse, setFuse] = useState(new Fuse(manifests, fuseOptions));
   const toast = useToast();
 
-  const timer = useRef(null);
+  const timer = useRef<NodeJS.Timeout | null>(null);
   const stopWatch = useRef([0, 0]);
-  const input = useRef(null);
+  const input = useRef<HTMLInputElement | null>(null);
 
   async function getManifests() {
     try {
@@ -51,7 +54,7 @@ function Search(props) {
   useEffect(() => {
     if (manifests.length > 0) {
       setFuse(new Fuse(manifests, fuseOptions));
-      input.current.focus();
+      input?.current?.focus();
     }
     //eslint-disable-next-line
   }, [manifests]);
@@ -66,7 +69,7 @@ function Search(props) {
 
   function doSearch() {
     stopWatch.current[0] = performance.now();
-    const results = fuse.search(search);
+    const results = fuse.search<Manifest>(search);
     stopWatch.current[1] = performance.now();
     setResults(results);
   }
@@ -76,7 +79,7 @@ function Search(props) {
     // set query parameter
     history.replace("/search?q=" + search);
     // use timeout to avoid unnecessary intermediate searches
-    clearTimeout(timer.current);
+    timer.current && clearTimeout(timer.current);
     timer.current = setTimeout(() => {
       doSearch();
     }, 300);
@@ -96,7 +99,9 @@ function Search(props) {
       <Box>
         <Input
           value={search}
-          onChange={(event) => setSearch(event.target.value)}
+          onChange={(event: React.FormEvent<HTMLInputElement>) =>
+            setSearch(event.currentTarget.value)
+          }
           placeholder="Search"
           boxSizing="border-box"
           ref={input}

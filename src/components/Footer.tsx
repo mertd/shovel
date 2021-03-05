@@ -3,7 +3,8 @@ import A from "./A";
 import { Box } from "@chakra-ui/core";
 import { version } from "../../package.json";
 
-function Footer(props) {
+
+function Footer(props: React.HTMLProps<HTMLElement>) {
   return (
     <footer {...props}>
       <Box pt="2rem" pb="2rem" pl="20vw" pr="20vw" bg="white">

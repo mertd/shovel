@@ -1,12 +1,16 @@
 import { Code, useToast, IconButton } from "@chakra-ui/core";
 import React from "react";
 
-export default function CopyCode({ code }) {
+interface CopyCodeProps extends React.HTMLProps<HTMLDivElement> {
+  code: string;
+}
+
+export default function CopyCode(props: CopyCodeProps) {
   const toast = useToast();
 
   async function toClipboard() {
     try {
-      await navigator.clipboard.writeText(code);
+      await navigator.clipboard.writeText(props.code);
       toast({
         status: "success",
         title: "Copied",
@@ -24,13 +28,14 @@ export default function CopyCode({ code }) {
   }
 
   return (
-    <div>
-      <Code>{code}</Code>{" "}
+    <div {...props}>
+      <Code>{props.code}</Code>{" "}
       <IconButton
         size="xs"
         variant="outline"
         onClick={toClipboard}
         icon="copy"
+        aria-label="copy"
       />
     </div>
   );
