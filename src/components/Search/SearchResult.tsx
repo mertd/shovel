@@ -1,9 +1,21 @@
 import React from "react";
-import { Box, Tag, Divider, Heading, Icon, Text } from "@chakra-ui/core";
+import {
+  Box,
+  Tag,
+  Divider,
+  Heading,
+  Icon,
+  Text,
+  BoxProps,
+} from "@chakra-ui/core";
 import A from "../A";
 import CopyCode from "../CopyCode";
 
-function SearchResult(props) {
+interface SearchResultProps extends BoxProps {
+  result: any;
+}
+
+function SearchResult(props: SearchResultProps) {
   const result = props.result;
   return (
     <Box
