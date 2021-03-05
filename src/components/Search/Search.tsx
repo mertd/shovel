@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import Fuse from "fuse.js";
-import { Spinner, Input, Stack, Box, Text, useToast } from "@chakra-ui/core";
+import { Spinner, Input, Stack, Box, Text } from "@chakra-ui/core";
 import SearchResult from "./SearchResult";
 import { useLocation, useHistory } from "react-router-dom";
 import Manifest from "../../types/Manifest";
+import ManifestsContext from "../../contexts/ManifestsContext";
 
 const fuseOptions = {
   threshold: 0.2,
@@ -17,39 +18,16 @@ function useQuery() {
 function Search(props: React.HTMLProps<HTMLDivElement>) {
   const query = useQuery();
   const history = useHistory();
+  const manifests = useContext(ManifestsContext);
   const [search, setSearch] = useState(query.get("q") || "");
   const [results, setResults] = useState<Fuse.FuseResult<Manifest>[] | null>(
     null
   );
-  const [manifests, setManifests] = useState([]);
   const [fuse, setFuse] = useState(new Fuse(manifests, fuseOptions));
-  const toast = useToast();
 
   const timer = useRef<NodeJS.Timeout | null>(null);
   const stopWatch = useRef([0, 0]);
   const input = useRef<HTMLInputElement | null>(null);
-
-  async function getManifests() {
-    try {
-      const response = await fetch(
-        "https://mertd.github.io/shovel-data/manifests.json"
-      );
-      const json = await response.json();
-      setManifests(json);
-    } catch (error) {
-      toast({
-        status: "error",
-        title: "Error",
-        description: "Couldn't fetch or parse manifests ⛔",
-        duration: null, // don't hide as this error will render the app unusable
-      });
-    }
-  }
-
-  useEffect(() => {
-    getManifests();
-    // eslint-disable-next-line
-  }, []);
 
   useEffect(() => {
     if (manifests.length > 0) {
@@ -114,10 +92,9 @@ function Search(props: React.HTMLProps<HTMLDivElement>) {
           </Text>
         )}
         <Stack spacing="1rem" pt="1rem" pb="1rem">
-          {results &&
-            results.map((result) => (
-              <SearchResult key={result.refIndex} result={result} />
-            ))}
+          {results?.map((result) => (
+            <SearchResult key={result.refIndex} manifest={result.item} />
+          ))}
         </Stack>
         {props.children}
       </Box>

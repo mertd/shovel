@@ -4,22 +4,42 @@ import { ThemeProvider } from "@chakra-ui/core";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Main from "./components/Main";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from "react-router-dom";
+import { ManifestsProvider } from "./contexts/ManifestsContext";
+import Manifest from "./components/Manifest";
 
 function App() {
   return (
     <div className="App">
       <ThemeProvider>
-        <Router>
-          <Route path="/search">
+        <ManifestsProvider>
+          <Router>
             <Header />
-            <Main />
-          </Route>
-          <Route path="*">
-            <Redirect to="/search" />
-          </Route>
-        </Router>
-        <Footer />
+            <Switch>
+              <Route path="/search">
+                <Main />
+              </Route>
+              <Route
+                path="/bucket/:bucket/manifest/:name"
+                render={(props) => (
+                  <Manifest
+                    name={props.match.params.name}
+                    bucket={props.match.params.bucket}
+                  />
+                )}
+              />
+              <Route path="*">
+                <Redirect to="/search" />
+              </Route>
+            </Switch>
+          </Router>
+          <Footer />
+        </ManifestsProvider>
       </ThemeProvider>
     </div>
   );

@@ -10,15 +10,14 @@ import {
 } from "@chakra-ui/core";
 import A from "../A";
 import CopyCode from "../CopyCode";
-import Fuse from "fuse.js";
 import Manifest from "../../types/Manifest";
+import { Link } from "react-router-dom";
 
 interface SearchResultProps extends BoxProps {
-  result: Fuse.FuseResult<Manifest>;
+  manifest: Manifest;
 }
 
 function SearchResult(props: SearchResultProps) {
-  const result = props.result;
   return (
     <Box
       borderWidth="1px"
@@ -29,27 +28,31 @@ function SearchResult(props: SearchResultProps) {
       {...props}
     >
       <Heading size="sm">
-        {result.item.name}{" "}
-        <A href={result.item.homepage} title="Homepage">
+        <Link
+          to={`/bucket/${props.manifest.bucket}/manifest/${props.manifest.name}`}
+        >
+          {props.manifest.name}
+        </Link>{" "}
+        <A href={props.manifest.homepage} title="Homepage">
           <Icon name="external-link" />
         </A>{" "}
-        <A href={result.item.manifestURL} title="Manifest">
+        <A href={props.manifest.manifestURL} title="Manifest">
           <Icon name="info-outline" />
         </A>{" "}
-        {result.item.checkver && result.item.checkver.github && (
-          <A href={result.item.checkver.github} title="Source Code">
+        {props.manifest.checkver && props.manifest.checkver.github && (
+          <A href={props.manifest.checkver.github} title="Source Code">
             <Icon name="edit" />
           </A>
         )}
       </Heading>
       <Divider />
-      <Tag>{result.item.version}</Tag> <Tag>{result.item.bucket}</Tag>
-      <Text>{result.item.description}</Text>
-      <p hidden={result.item.bucket === "main"}>
-        <CopyCode code={`scoop bucket add ${result.item.bucket}`} />
+      <Tag>{props.manifest.version}</Tag> <Tag>{props.manifest.bucket}</Tag>
+      <Text>{props.manifest.description}</Text>
+      <p hidden={props.manifest.bucket === "main"}>
+        <CopyCode code={`scoop bucket add ${props.manifest.bucket}`} />
       </p>
       <p>
-        <CopyCode code={`scoop install ${result.item.name}`} />
+        <CopyCode code={`scoop install ${props.manifest.name}`} />
       </p>
       {props.children}
     </Box>
