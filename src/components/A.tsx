@@ -1,11 +1,6 @@
 import React from "react";
-import Props from "../types/Props";
 
-interface AProps extends Props {
-  href: string;
-}
-
-function A(props: AProps) {
+function A(props: React.HTMLProps<HTMLAnchorElement>) {
   return (
     <a {...props} target="_blank" rel="noopener noreferrer" >
       {props.children}

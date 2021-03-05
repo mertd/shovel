@@ -1,7 +1,7 @@
 import { Code, useToast, IconButton } from "@chakra-ui/core";
 import React from "react";
 
-interface CopyCodeProps {
+interface CopyCodeProps extends React.HTMLProps<HTMLDivElement> {
   code: string;
 }
 
@@ -28,7 +28,7 @@ export default function CopyCode(props: CopyCodeProps) {
   }
 
   return (
-    <div>
+    <div {...props}>
       <Code>{props.code}</Code>{" "}
       <IconButton
         size="xs"
