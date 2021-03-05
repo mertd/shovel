@@ -4,8 +4,14 @@ import { ThemeProvider } from "@chakra-ui/core";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Main from "./components/Main";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from "react-router-dom";
 import { ManifestsProvider } from "./contexts/ManifestsContext";
+import Manifest from "./components/Manifest";
 
 function App() {
   return (
@@ -14,12 +20,18 @@ function App() {
         <ManifestsProvider>
           <Header />
           <Router>
-            <Route path="/search">
-              <Main />
-            </Route>
-            <Route path="*">
-              <Redirect to="/search" />
-            </Route>
+            <Switch>
+              <Route path="/search">
+                <Main />
+              </Route>
+              <Route
+                path="/manifest/:name"
+                render={(props) => <Manifest name={props.match.params.name} />}
+              />
+              <Route path="*">
+                <Redirect to="/search" />
+              </Route>
+            </Switch>
           </Router>
           <Footer />
         </ManifestsProvider>
