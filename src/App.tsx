@@ -12,9 +12,9 @@ function App() {
     <div className="App">
       <ThemeProvider>
         <ManifestsProvider>
+          <Header />
           <Router>
             <Route path="/search">
-              <Header />
               <Main />
             </Route>
             <Route path="*">
