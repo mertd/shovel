@@ -25,8 +25,13 @@ function App() {
                 <Main />
               </Route>
               <Route
-                path="/manifest/:name"
-                render={(props) => <Manifest name={props.match.params.name} />}
+                path="/bucket/:bucket/manifest/:name"
+                render={(props) => (
+                  <Manifest
+                    name={props.match.params.name}
+                    bucket={props.match.params.bucket}
+                  />
+                )}
               />
               <Route path="*">
                 <Redirect to="/search" />

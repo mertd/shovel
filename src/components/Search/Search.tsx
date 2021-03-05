@@ -92,10 +92,9 @@ function Search(props: React.HTMLProps<HTMLDivElement>) {
           </Text>
         )}
         <Stack spacing="1rem" pt="1rem" pb="1rem">
-          {results &&
-            results.map((result) => (
-              <SearchResult key={result.refIndex} manifest={result.item} />
-            ))}
+          {results?.map((result) => (
+            <SearchResult key={result.refIndex} manifest={result.item} />
+          ))}
         </Stack>
         {props.children}
       </Box>

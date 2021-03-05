@@ -28,7 +28,9 @@ function SearchResult(props: SearchResultProps) {
       {...props}
     >
       <Heading size="sm">
-        <Link to={`/manifest/${props.manifest.name}`}>
+        <Link
+          to={`/bucket/${props.manifest.bucket}/manifest/${props.manifest.name}`}
+        >
           {props.manifest.name}
         </Link>{" "}
         <A href={props.manifest.homepage} title="Homepage">
