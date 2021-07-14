@@ -15,7 +15,7 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-function Search(props: React.HTMLProps<HTMLDivElement>) {
+function Search(props: React.ComponentPropsWithRef<"div">) {
   const query = useQuery();
   const history = useHistory();
   const manifests = useContext(ManifestsContext);

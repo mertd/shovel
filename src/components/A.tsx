@@ -1,8 +1,8 @@
 import React from "react";
 
-function A(props: React.HTMLProps<HTMLAnchorElement>) {
+function A(props: React.ComponentPropsWithRef<"a">) {
   return (
-    <a {...props} target="_blank" rel="noopener noreferrer" >
+    <a target="_blank" rel="noopener noreferrer" {...props}>
       {props.children}
     </a>
   );

@@ -12,6 +12,7 @@ import A from "../A";
 import CopyCode from "../CopyCode";
 import Manifest from "../../types/Manifest";
 import { Link } from "react-router-dom";
+import { FileText, GitMerge, Link as LinkIcon } from "react-feather";
 
 interface SearchResultProps extends BoxProps {
   manifest: Manifest;
@@ -34,14 +35,14 @@ function SearchResult(props: SearchResultProps) {
           {props.manifest.name}
         </Link>{" "}
         <A href={props.manifest.homepage} title="Homepage">
-          <Icon name="external-link" />
+          <Icon as={LinkIcon} />
         </A>{" "}
         <A href={props.manifest.manifestURL} title="Manifest">
-          <Icon name="info-outline" />
+          <Icon as={FileText} />
         </A>{" "}
-        {props.manifest.checkver && props.manifest.checkver.github && (
+        {props.manifest.checkver?.github && (
           <A href={props.manifest.checkver.github} title="Source Code">
-            <Icon name="edit" />
+            <Icon as={GitMerge} />
           </A>
         )}
       </Heading>

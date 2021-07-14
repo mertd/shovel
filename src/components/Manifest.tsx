@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import ManifestsContext from "../contexts/ManifestsContext";
 import SearchResult from "./Search/SearchResult";
 
-interface ManifestProps extends React.HTMLProps<HTMLDivElement> {
+interface ManifestProps extends React.ComponentPropsWithRef<"div"> {
   bucket: string;
   name: string;
 }
@@ -14,6 +14,6 @@ export default function Manifest(props: ManifestProps) {
       manifest.name === props.name && manifest.bucket === props.bucket
   );
 
-  if (manifest) return <SearchResult manifest={manifest} />;
+  if (manifest) return <SearchResult manifest={manifest} {...props} />;
   return null;
 }

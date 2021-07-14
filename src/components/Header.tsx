@@ -3,7 +3,7 @@ import A from "./A";
 import { Heading, Box } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 
-function Header(props: React.HTMLProps<HTMLElement>) {
+function Header(props: React.ComponentPropsWithRef<"header">) {
   return (
     <header {...props}>
       <Box pt="1rem" pb="1rem" pl="20vw" pr="20vw" bg="gray.100">
