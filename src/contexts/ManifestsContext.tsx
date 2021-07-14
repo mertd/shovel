@@ -1,12 +1,11 @@
 import React, { createContext, useEffect, useState } from "react";
 import Manifest from "../types/Manifest";
-import Props from "../types/Props";
 import { useToast } from "@chakra-ui/core";
 
 const ManifestsContext = createContext<Manifest[]>([]);
 export const ManifestsConsumer = ManifestsContext.Consumer;
 
-export function ManifestsProvider(props: Props) {
+export function ManifestsProvider(props: React.ComponentPropsWithRef<any>) {
   const [manifests, setManifests] = useState<Manifest[]>([]);
   const toast = useToast();
 
@@ -33,7 +32,7 @@ export function ManifestsProvider(props: Props) {
   }, []);
 
   return (
-    <ManifestsContext.Provider value={manifests}>
+    <ManifestsContext.Provider value={manifests} {...props}>
       {props.children}
     </ManifestsContext.Provider>
   );
