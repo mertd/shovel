@@ -1,5 +1,6 @@
-import { Code, useToast, IconButton } from "@chakra-ui/core";
+import { Code, useToast, Button, Icon } from "@chakra-ui/core";
 import React from "react";
+import { Clipboard } from "react-feather";
 
 interface CopyCodeProps extends React.HTMLProps<HTMLDivElement> {
   code: string;
@@ -30,13 +31,14 @@ export default function CopyCode(props: CopyCodeProps) {
   return (
     <div {...props}>
       <Code>{props.code}</Code>{" "}
-      <IconButton
+      <Button
         size="xs"
         variant="outline"
         onClick={toClipboard}
-        icon="copy"
         aria-label="copy"
-      />
+      >
+        <Icon as={Clipboard} />
+      </Button>
     </div>
   );
 }
