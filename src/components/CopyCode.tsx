@@ -2,7 +2,7 @@ import { Code, useToast, Button, Icon } from "@chakra-ui/core";
 import React from "react";
 import { Clipboard } from "react-feather";
 
-interface CopyCodeProps extends React.HTMLProps<HTMLDivElement> {
+interface CopyCodeProps extends React.ComponentPropsWithRef<"div"> {
   code: string;
 }
 
