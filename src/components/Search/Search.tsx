@@ -53,6 +53,8 @@ function Search(props: React.ComponentPropsWithRef<"div">) {
   }
 
   useEffect(() => {
+    // skip search if there is no change, reset if there is no input
+    if (search === query.get("q")) return;
     if (!search) return setResults(null);
     // set query parameter
     history.replace("/search?q=" + search);
