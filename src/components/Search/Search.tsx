@@ -83,6 +83,7 @@ function Search(props: React.ComponentPropsWithRef<"div">) {
           }
           placeholder="Search"
           boxSizing="border-box"
+          background="white"
           ref={input}
         />
         {results && (
