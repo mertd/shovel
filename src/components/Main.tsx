@@ -1,6 +1,6 @@
 import React from "react";
 import Search from "./Search";
-import { Box } from "@chakra-ui/core";
+import { Box } from "@chakra-ui/react";
 
 function Main(props: React.ComponentPropsWithRef<"main">) {
   return (

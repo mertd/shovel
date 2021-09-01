@@ -1,4 +1,4 @@
-import { Code, useToast, Button, Icon } from "@chakra-ui/core";
+import { Code, useToast, Button, Icon } from "@chakra-ui/react";
 import React from "react";
 import { Clipboard } from "react-feather";
 

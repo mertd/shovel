@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import Manifest from "../types/Manifest";
-import { useToast } from "@chakra-ui/core";
+import { useToast } from "@chakra-ui/react";
 
 const ManifestsContext = createContext<Manifest[]>([]);
 export const ManifestsConsumer = ManifestsContext.Consumer;

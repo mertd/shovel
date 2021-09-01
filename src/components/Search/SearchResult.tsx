@@ -7,7 +7,7 @@ import {
   Icon,
   Text,
   BoxProps,
-} from "@chakra-ui/core";
+} from "@chakra-ui/react";
 import A from "../A";
 import CopyCode from "../CopyCode";
 import Manifest from "../../types/Manifest";

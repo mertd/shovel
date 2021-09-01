@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import Fuse from "fuse.js";
-import { Spinner, Input, Stack, Box, Text } from "@chakra-ui/core";
+import { Spinner, Input, Stack, Box, Text } from "@chakra-ui/react";
 import SearchResult from "./SearchResult";
 import { useLocation, useHistory } from "react-router-dom";
 import Manifest from "../../types/Manifest";

@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { ThemeProvider } from "@chakra-ui/core";
+import { ChakraProvider } from "@chakra-ui/react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Main from "./components/Main";
@@ -16,7 +16,7 @@ import Manifest from "./components/Manifest";
 function App() {
   return (
     <div className="App">
-      <ThemeProvider>
+      <ChakraProvider>
         <ManifestsProvider>
           <Router>
             <Header />
@@ -40,7 +40,7 @@ function App() {
           </Router>
           <Footer />
         </ManifestsProvider>
-      </ThemeProvider>
+      </ChakraProvider>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import A from "./A";
-import { Box } from "@chakra-ui/core";
+import { Box } from "@chakra-ui/react";
 import { version } from "../../package.json";
 
 function Footer(props: React.ComponentPropsWithRef<"footer">) {
