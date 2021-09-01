@@ -1,6 +1,6 @@
 import React from "react";
 import A from "./A";
-import { Heading, Box } from "@chakra-ui/core";
+import { Heading, Box } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 function Header(props: React.ComponentPropsWithRef<"header">) {
