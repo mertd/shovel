@@ -60,9 +60,8 @@ function Search(props: React.ComponentPropsWithRef<"div">) {
     history.replace("/search?q=" + search);
     // use timeout to avoid unnecessary intermediate searches
     timer.current && clearTimeout(timer.current);
-    timer.current = setTimeout(() => {
-      doSearch();
-    }, 300);
+    const timeout = Math.max(1000 / search.length, 100);
+    timer.current = setTimeout(doSearch, timeout);
     // eslint-disable-next-line
   }, [search]);
 
