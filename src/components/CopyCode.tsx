@@ -6,6 +6,9 @@ interface CopyCodeProps extends React.ComponentPropsWithRef<"div"> {
   code: string;
 }
 
+/**
+ * Display a line of code together with a button that allows for easy copying.
+ */
 export default function CopyCode(props: CopyCodeProps) {
   const toast = useToast();
 

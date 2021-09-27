@@ -18,6 +18,9 @@ interface SearchResultProps extends BoxProps {
   manifest: Manifest;
 }
 
+/**
+ * Displays information for a single manifest
+ */
 function SearchResult(props: SearchResultProps) {
   return (
     <VStack

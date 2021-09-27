@@ -15,6 +15,9 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
+/**
+ * Renders a search input and responds to interaction with it by updating the url, executing the manifest search and displaying the results.
+ */
 function Search(props: React.ComponentPropsWithRef<"div">) {
   const query = useQuery();
   const history = useHistory();

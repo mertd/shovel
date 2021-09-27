@@ -1,10 +1,14 @@
+import { Link, LinkProps } from "@chakra-ui/react";
 import React from "react";
 
-function A(props: React.ComponentPropsWithRef<"a">) {
+/**
+ * External links. Use `Link` from react-router for internal links instead.
+ */
+function A(props: LinkProps) {
   return (
-    <a target="_blank" rel="noopener noreferrer" {...props}>
+    <Link isExternal color="blue.600" {...props}>
       {props.children}
-    </a>
+    </Link>
   );
 }
 
