@@ -3,6 +3,9 @@ import A from "./A";
 import { Box } from "@chakra-ui/react";
 import { version } from "../../package.json";
 
+/**
+ * Footer for any page
+ */
 function Footer(props: React.ComponentPropsWithRef<"footer">) {
   return (
     <footer {...props}>

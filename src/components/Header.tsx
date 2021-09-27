@@ -3,6 +3,9 @@ import A from "./A";
 import { Heading, Box } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
+/**
+ * Header for any page
+ */
 function Header(props: React.ComponentPropsWithRef<"header">) {
   return (
     <header {...props}>

@@ -2,6 +2,9 @@ import React from "react";
 import Search from "./Search";
 import { Box } from "@chakra-ui/react";
 
+/**
+ * Container for search components
+ */
 function Main(props: React.ComponentPropsWithRef<"main">) {
   return (
     <main {...props}>
