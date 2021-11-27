@@ -1,38 +1,26 @@
 # Shovel
 
-Web app for folks who prefer to search apps to install via [scoop](https://scoop.sh) via a GUI.
+ > Find [scoop](https://scoop.sh) manifests instantly from the comfort of your browser.
 
 ## Motivation
 
-Scoop manifests can be hard to find via internet searches as their manifests often don't show up in the top results. 
-The long term goal of this app is to change that.
+Scoop manifests can be hard to find via internet searches as their manifests often don't show up in the top results. At the same time, searching via scoop itself is rather slow.
 
-## Available Scripts
+The goal of this web app is to provide a fast and comfortable alternative.
 
-In the project directory, you can run:
+## Development
 
-### `npm start`
+Run with `npm run start`, test with `npm run test` and build with `npm run build`.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This app uses a `manifests.json` file generated and hosted in [shovel-data](https://github.com/mertd/shovel-data).
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Technologies
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Language: TypeScript
+- SPA Framework: React
+- UI Framework: Chakra UI
+- Linter: ESLint
+- Formatter: Prettier
 
 ## Licence & Attribution
 
