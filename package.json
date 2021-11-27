@@ -1,6 +1,6 @@
 {
   "name": "shovel",
-  "version": "0.10.2",
+  "version": "0.10.3",
   "private": true,
   "dependencies": {
     "@chakra-ui/react": "^1.0.0",
