@@ -4,8 +4,9 @@
 
 ## Motivation
 
-Scoop manifests can be hard to find via internet searches as their manifests often don't show up in the top results. 
-The long term goal of this app is to change that.
+Scoop manifests can be hard to find via internet searches as their manifests often don't show up in the top results. At the same time, searching via scoop itself is rather slow.
+
+The goal of this web app is to provide a fast and comfortable alternative.
 
 ## Available Scripts
 
