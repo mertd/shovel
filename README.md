@@ -1,6 +1,6 @@
 # Shovel
 
-Web app for folks who prefer to search apps to install via [scoop](https://scoop.sh) via a GUI.
+ > Find [scoop](https://scoop.sh) manifests instantly from the comfort of your browser.
 
 ## Motivation
 
