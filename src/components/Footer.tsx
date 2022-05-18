@@ -13,6 +13,7 @@ function Footer(props: React.ComponentPropsWithRef<"footer">) {
     toast({
       status: "warning",
       title: "Archival Warning",
+      duration: 10000,
       description: (
         <>
           The Scoop community chose an official web search. Please use it at{" "}
