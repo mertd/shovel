@@ -1,12 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import A from "./A";
-import { Box } from "@chakra-ui/react";
+import { Box, useToast } from "@chakra-ui/react";
 import { version } from "../../package.json";
 
 /**
  * Footer for any page
  */
 function Footer(props: React.ComponentPropsWithRef<"footer">) {
+  const toast = useToast();
+
+  useEffect(() => {
+    toast({
+      status: "warning",
+      title: "Archival Warning",
+      description: (
+        <>
+          The Scoop community chose an official web search. Please use it
+          instead at{" "}
+          <b>
+            <a href="https://scoop.sh" target="_blank" rel="noreferrer">
+              scoop.sh
+            </a>
+          </b>
+          . This app will go offline after 2022.
+        </>
+      ),
+    });
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <footer {...props}>
       <Box pt="2rem" pb="2rem" pl="20vw" pr="20vw" bg="white">
