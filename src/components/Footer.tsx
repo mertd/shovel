@@ -15,14 +15,13 @@ function Footer(props: React.ComponentPropsWithRef<"footer">) {
       title: "Archival Warning",
       description: (
         <>
-          The Scoop community chose an official web search. Please use it
-          instead at{" "}
+          The Scoop community chose an official web search. Please use it at{" "}
           <b>
             <a href="https://scoop.sh" target="_blank" rel="noreferrer">
               scoop.sh
             </a>
           </b>
-          . This app will go offline after 2022.
+          . Shovel will be archived and go offline after 2022. 🗄
         </>
       ),
     });
