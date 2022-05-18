@@ -22,7 +22,7 @@ function Footer(props: React.ComponentPropsWithRef<"footer">) {
               scoop.sh
             </a>
           </b>
-          . Shovel will be archived and go offline after 2022. 🗄
+          . Shovel will be archived and shut down after 2022. 🗄
         </>
       ),
     });
